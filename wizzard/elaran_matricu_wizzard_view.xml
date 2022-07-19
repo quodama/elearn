@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    
+    <record id="elearn_matricula_wizzard_tree" model="ir.ui.view">
+        <field name="name">Matriculación</field>
+        <field name="model">elearn.matricu.wizzard</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Caption" >
+                <sheet>
+                        <group >
+                            <field name="curse_id" readonly="context.get('default_curse_id', False)" />                            
+                            <field name="estudiante_id" domain="[('id','in',only_student_ids)]" />                            
+                        </group>
+                        <field name="only_student_ids" invisible="1"/>
+                </sheet>
+                <footer>
+                    <button string="Matricular" type="object"  class="btn-primary" name="accion_matricular"
+                    confirm="Are you sure? Two-factor authentication will be required again on all your devices"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+            
+            
+        </field>
+    </record>
+    
+</odoo>

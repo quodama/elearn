@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    
+    <!-- VIEWS: "curse"
+    
+        - Model·········: curse
+        - _rec_name·····: name
+        - Domain········: []
+        - Context·······: \{}
+        - Parent menu ··: base.menu_custom
+        - View priority·: 16    
+        - Sequence····..: 10
+        - Action help···: Something about curse
+    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    
+    <!-- Tree view for "curse" -->
+    <record id="view_curse_tree" model="ir.ui.view">
+        <field name="name">view.curse.tree</field>
+        <field name="model">elearn.curse</field>
+        <field name="type">tree</field>
+        <field name="mode">primary</field>
+        <field name="priority" eval="16" />
+        <field name="active" eval="True" />
+        <field name="arch" type="xml">
+            <tree string="curse_tree">
+                <field name="name" />
+                <field name="period_id" />
+                <field name="schedule_id" />
+            </tree>
+        </field>
+    </record>
+    
+    <!-- Form view for "curse" -->
+    <record id="view_curse_form" model="ir.ui.view">
+        <field name="name">view.curse.form</field>
+        <field name="model">elearn.curse</field>
+        <field name="type">form</field>
+        <field name="mode">primary</field>
+        <field name="priority" eval="16" />
+        <field name="active" eval="True" />
+        <field name="arch" type="xml">
+            <form string="curse_form" create="true" delete="true" edit="true">
+                <header>
+                    <button string="Matricular" name="action_matricula" type="object" class="oe_highlight"/>
+                    <field name="state" widget="statusbar"  options="{'clickable': '1'}"/>
+                </header>
+                <sheet>
+                    <div name="button_box" class="oe_button_box">
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_view_attachment" type="object" class="oe_stat_button" icon="fa- fa-address-book" help="Documentos">
+                                <field name="count_attachment" string="Documentos" widget="statinfo"/>
+                            </button>
+
+                            <button name="action_view_student" type="object" class="oe_stat_button" icon="fa- fa-address-book" help="Muestra los estudiantes matriculados">
+                                <field name="count_student" string="Estudiantes" widget="statinfo"/>
+                            </button>
+                            <button name="action_view_profesor" type="object" class="oe_stat_button" icon="fa- fa-address-book" help="Muestra los profesores">
+                                <field name="count_profesor" string="Profesores" widget="statinfo"/>
+                            </button> 
+                            <button name="action_view_padre" type="object" class="oe_stat_button" icon="fa- fa-address-book" help="Muestra los padres">
+                                <field name="count_padre" string="Padres" widget="statinfo"/>
+                            </button> 
+                        </div>
+                    </div>
+                    
+                    <group>
+                            <field name="name" />
+                            <field name="period_id" />
+                            <field name="schedule_id" />
+                    </group>
+                     <group name="name" string="Asociado">
+                       <!--  <field name="res_model_id" />
+                        <field name="res_id" /> -->
+                        <field name="referense_id" />
+                    </group>
+                    <notebook groups="base.group_no_one">
+                    <!-- <page name="Profesores" string="Profesores">
+                        <field name="profesor_ids" />
+                    </page> -->
+                        <page name="Actores" string="Actores">
+                            <field name="actor_ids" context="{'default_curse_id':id}">
+                                <tree string="Caption"  editable="bottom">
+                                    <field name="actor_respartner_id" />
+                                    <field name="category_elaran_id" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <!-- Search view for "curse" -->
+    <record id="view_curse_search" model="ir.ui.view">
+        <field name="name">view.curse.search</field>
+        <field name="model">elearn.curse</field>
+        <field name="type">search</field>
+        <field name="mode">primary</field>
+        <field name="priority" eval="16" />
+        <field name="active" eval="True" />
+        <field name="arch" type="xml">
+            <search string="curse_search">
+                <field name="name" />
+                <group expand="1" string="Group By">
+                 <filter string="Periodo" name='period_id' context="{'group_by':'period_id'}"/>
+                 <filter string="Horario" name='schedule_id' context="{'group_by':'schedule_id'}"/>
+                 </group>
+                
+            </search>
+        </field>
+    </record>
+    
+    <!-- Main window action for "curse" -->
+    <record id="action_curse_act_window" model="ir.actions.act_window">
+        <field name="type">ir.actions.act_window</field>
+        <field name="name">Curso</field>
+        <field name="res_model">elearn.curse</field>
+        <field name="view_mode">tree,form</field>
+        <!-- <field name="view_type">form</field> -->
+        <field name="target">current</field>
+        <field name="domain">[]</field>
+        <field name="context">\{}</field>
+        <field name="search_view_id" ref="view_curse_search" />
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click para añadir un nuevo curso
+            </p><p>
+                Cursos 
+            </p>
+        </field>
+    </record>
+    
+    
+    
+</odoo>

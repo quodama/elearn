@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="category_res_partnet_student" model="res.partner.category">
+        <field name="name">Estudiante</field>
+    </record>
+    <record id="category_res_partnet_profesor" model="res.partner.category">
+        <field name="name">Profesor</field>
+    </record>
+    <record id="category_res_partnet_padre" model="res.partner.category">
+        <field name="name">Padre</field>
+    </record>
+</odoo>

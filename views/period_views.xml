@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    
+    <!-- VIEWS: "period"
+    
+        - Model·········: period
+        - _rec_name·····: period
+        - Domain········: []
+        - Context·······: \{}
+        - Parent menu ··: base.menu_custom
+        - View priority·: 16    
+        - Sequence····..: 10
+        - Action help···: Something about period
+    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    
+    <!-- Tree view for "period" -->
+    <record id="view_period_tree" model="ir.ui.view">
+        <field name="name">view.period.tree</field>
+        <field name="model">elearn.period</field>
+        <field name="type">tree</field>
+        <field name="mode">primary</field>
+        <field name="priority" eval="16" />
+        <field name="active" eval="True" />
+        <field name="arch" type="xml">
+            <tree string="period_tree" create="true" delete="true" edit="true">
+                <field name="name" />
+                <field name="vigente" />
+                <field name="fecha_inicio" widget="date" />
+            </tree>
+        </field>
+    </record>
+    
+    <!-- Form view for "period" -->
+    <record id="view_period_form" model="ir.ui.view">
+        <field name="name">view.period.form</field>
+        <field name="model">elearn.period</field>
+        <field name="type">form</field>
+        <field name="mode">primary</field>
+        <field name="priority" eval="16" />
+        <field name="active" eval="True" />
+        <field name="arch" type="xml">
+            <form string="period_form" create="true" delete="true" edit="true">
+                <header>
+                </header>
+                <sheet>
+                     <widget name="web_ribbon" title="Archivado" 
+                    bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                    <group>
+                            <field name="active" invisible="1" />
+                            <field name="name" />
+                            <field name="vigente" />
+                            <field name="fecha_inicio" widget="date" />
+                    </group>
+                    <notebook>
+                        <page name="Cursos" string="Cursos">
+                            <field name="curse_ids" />
+                        </page>
+                    </notebook>
+                </sheet>
+                
+            </form>
+        </field>
+    </record>
+    
+    <!-- Search view for "period" -->
+    <record id="view_period_search" model="ir.ui.view">
+        <field name="name">view.period.search</field>
+        <field name="model">elearn.period</field>
+        <field name="type">search</field>
+        <field name="mode">primary</field>
+        <field name="priority" eval="16" />
+        <field name="active" eval="True" />
+        <field name="arch" type="xml">
+            <search string="period_search">
+                <field name="name" />
+                <separator/>
+                <filter name="active" string="Archivados" domain="[('active','=',False)]" help="Muestra los periods inactivos" />
+            </search>
+        </field>
+    </record>
+    
+    <!-- Main window action for "period" -->
+    <record id="action_period_act_window" model="ir.actions.act_window">
+        <field name="type">ir.actions.act_window</field>
+        <field name="name">Periodo</field>
+        <field name="res_model">elearn.period</field>
+        <field name="view_mode">tree,form</field>
+        
+        <field name="target">current</field>
+        <field name="domain">[]</field>
+        <field name="context">\{}</field>
+        <field name="search_view_id" ref="view_period_search" />
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click para añadir Periodo
+            </p><p>
+                Periodos escolares
+            </p>
+        </field>
+    </record>
+    
+    
+    
+</odoo>

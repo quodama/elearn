@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    
+    <!-- VIEWS: "schedule"
+    
+        - Model·········: schedule
+        - _rec_name·····: name
+        - Domain········: []
+        - Context·······: \{}
+        - Parent menu ··: base.menu_custom
+        - View priority·: 16    
+        - Sequence····..: 10
+        - Action help···: Something about schedule
+    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    
+    <!-- Tree view for "schedule" -->
+    <record id="view_schedule_tree" model="ir.ui.view">
+        <field name="name">view.schedule.tree</field>
+        <field name="model">elearn.schedule</field>
+        <field name="type">tree</field>
+        <field name="mode">primary</field>
+        <field name="priority" eval="16" />
+        <field name="active" eval="True" />
+        <field name="arch" type="xml">
+            <tree string="schedule_tree" create="true" delete="true" edit="true">
+                <field name="sequence" widget="handle"/>
+                <field name="name" />
+                <field name="schedule_curse" />
+            </tree>
+        </field>
+    </record>
+    
+    <!-- Form view for "schedule" -->
+    <record id="view_schedule_form" model="ir.ui.view">
+        <field name="name">view.schedule.form</field>
+        <field name="model">elearn.schedule</field>
+        <field name="type">form</field>
+        <field name="mode">primary</field>
+        <field name="priority" eval="16" />
+        <field name="active" eval="True" />
+        <field name="arch" type="xml">
+            <form string="schedule_form" create="true" delete="true" edit="true">
+                <header>
+                </header>
+                <sheet>
+                    <widget name="web_ribbon" title="Archivado" 
+                    bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                    <group>
+                            <field name="active" invisible="1" />
+                            <field name="name" />
+                            <field name="schedule_curse" />
+                    </group>
+                    <notebook>
+                        <page name="Cursos" string="Cursos">
+                            <field name="curse_ids" />
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <!-- Search view for "schedule" -->
+    <record id="view_schedule_search" model="ir.ui.view">
+        <field name="name">view.schedule.search</field>
+        <field name="model">elearn.schedule</field>
+        <field name="type">search</field>
+        <field name="mode">primary</field>
+        <field name="priority" eval="16" />
+        <field name="active" eval="True" />
+        <field name="arch" type="xml">
+            <search string="schedule_search">
+                <field name="name" />
+                <separator/>
+                <filter name="active" string="Archivados" domain="[('active','=',False)]" help="Muestra los horarios inactivos" />
+            </search>
+        </field>
+    </record>
+    
+    <!-- Main window action for "schedule" -->
+    <record id="action_schedule_act_window" model="ir.actions.act_window">
+        <field name="type">ir.actions.act_window</field>
+        <field name="name">Horario</field>
+        <field name="res_model">elearn.schedule</field>
+        <field name="view_mode">tree,form</field>
+        <!-- <field name="view_type">form</field> -->
+        <field name="target">current</field>
+        <field name="domain">[]</field>
+        <field name="context">\{}</field>
+        <field name="search_view_id" ref="view_schedule_search" />
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to add new schedule
+            </p><p>
+                Something about schedule
+            </p>
+        </field>
+    </record>
+    
+    
+    
+</odoo>

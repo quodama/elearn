@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_elearn_curse,access_elearn_curse,model_elearn_curse,base.group_user,1,1,1,1
+access_elearn_schedule,access_elearn_schedule,model_elearn_schedule,base.group_user,1,1,1,1
+access_elearn_period,access_elearn_period,model_elearn_period,base.group_user,1,1,1,1
+access_elearn_curse_res_partner,access_elearn_curse_res_partner,model_elearn_curse_res_partner,base.group_user,1,1,1,1
+access_elearn_matricu_wizzard,access_elearn_matricu_wizzard,model_elearn_matricu_wizzard,base.group_user,1,1,1,1
